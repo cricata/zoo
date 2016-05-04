@@ -4,52 +4,35 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
-use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
- * FoodCategory
+ * UnitMeasure
  *
- * @ORM\Table(name="food_category")
+ * @ORM\Table()
  * @ORM\Entity
  * @UniqueEntity("name")
  * @ORM\HasLifecycleCallbacks()
  */
-class FoodCategory {
-
+class UnitMeasure
+{
     /**
      * @var integer
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
-     * 
      */
-    private $id;
-
+    private $id;      
+    
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string")
+     * @ORM\Column(name="name", type="string", nullable=false)
      */
-    private $name;
+    private $name;        
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="description", type="string")
-     */
-    private $description;
     
-    
-     /**
-     * @var integer
-     *
-     * @ORM\ManyToOne(targetEntity="FoodCategory")
-     * @ORM\JoinColumn(name="food_category_id", referencedColumnName="id", onDelete="SET NULL")
-     * 
-     */ 
-    private $foodItem;   
-
     /**
      * @var \DateTime
      *
@@ -62,6 +45,6 @@ class FoodCategory {
      *
      * @ORM\Column(name="dat_upd", type="datetime")
      */
-    private $datUpd;
+    private $datUpd; 
 
 }

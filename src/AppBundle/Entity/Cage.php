@@ -7,14 +7,13 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * FoodCategory
+ * Cage
  *
- * @ORM\Table(name="food_item")
+ * @ORM\Table(name="cage")
  * @ORM\Entity
- * @UniqueEntity("name")
  * @ORM\HasLifecycleCallbacks()
  */
-class FoodItems {
+class Cage {
 
     /**
      * @var integer
@@ -27,25 +26,40 @@ class FoodItems {
     private $id;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="material", type="string")
+     */
+    private $material;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="location", type="string")
+     */
+    private $location;
+    
+     /**
      * @var integer
      *
-     * @ORM\Column(name="code", type="integer")
-     */
-    private $code;
-
-    /**
-     * @var string
+     * @ORM\Column(name="number", type="integer",nullable=true)
+     * @Assert\Regex(
+     *     pattern="/^[\d+]+$/",
+     *     match=true,
+     *     message="Number must be positive"
+     * )
+     */ 
+    private $number;
+    
+    
+     /**
+     * @var integer
      *
-     * @ORM\Column(name="name", type="string")
-     */
-    private $name;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="description", type="string")
-     */
-    private $description;
+     * @ORM\ManyToOne(targetEntity="Animal", inversedBy="cages")
+     * @ORM\JoinColumn(name="animal_id", referencedColumnName="id", onDelete="SET NULL")
+     * 
+     */ 
+    private $animal;   
 
     /**
      * @var \DateTime

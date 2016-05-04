@@ -9,12 +9,12 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * FoodCategory
  *
- * @ORM\Table(name="food_category")
+ * @ORM\Table(name="food_item")
  * @ORM\Entity
  * @UniqueEntity("name")
  * @ORM\HasLifecycleCallbacks()
  */
-class FoodCategory {
+class FoodItems {
 
     /**
      * @var integer
@@ -25,6 +25,13 @@ class FoodCategory {
      * 
      */
     private $id;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="code", type="integer")
+     */
+    private $code;
 
     /**
      * @var string
@@ -39,22 +46,26 @@ class FoodCategory {
      * @ORM\Column(name="description", type="string")
      */
     private $description;
-    
-    
-     /**
-     * @var integer
-     *
-     * @ORM\ManyToOne(targetEntity="FoodCategory")
-     * @ORM\JoinColumn(name="food_category_id", referencedColumnName="id", onDelete="SET NULL")
+    /**
      * 
-     */ 
-    private $foodItem;   
-
+     *
+     * @ORM\ManyToMany(targetEntity="Animal", mappedBy="foodItems")
+     *
+     */
+    private $animals;
+    /**
+     * 
+     * @ORM\OneToMany(targetEntity="FoodCategory", mappedBy="foodItem")
+     * 
+     * 
+     */
+    private $foodCategories;      
     /**
      * @var \DateTime
      *
      * @ORM\Column(name="dat_cre", type="datetime")
      */
+    
     private $datCre;
 
     /**
