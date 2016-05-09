@@ -28,5 +28,68 @@ class Role implements RoleInterface
      * @ORM\Column(name="role", type="string", length=20, unique=true)
      */
     private $role;
-    
+
+
+    /**
+     * @see RoleInterface
+     */
+    public function getRole()
+    {
+        return $this->role;
+    }
+    /**
+     * @inheritDoc
+     */
+    public function __toString()
+    {
+        return $this->role;
+    }  
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     * @return Role
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string 
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Set role
+     *
+     * @param string $role
+     * @return Role
+     */
+    public function setRole($role)
+    {
+        $this->role = $role;
+
+        return $this;
+    }
+
+   
 }

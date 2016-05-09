@@ -7,14 +7,14 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * FoodItem
+ * AnimalCategory
  *
- * @ORM\Table(name="food_item")
+ * @ORM\Table(name="animal_category")
  * @ORM\Entity
  * @UniqueEntity("name")
  * @ORM\HasLifecycleCallbacks()
  */
-class FoodItem {
+class AnimalCategory {
 
     /**
      * @var integer
@@ -25,13 +25,6 @@ class FoodItem {
      * 
      */
     private $id;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="code", type="integer")
-     */
-    private $code;
 
     /**
      * @var string
@@ -46,33 +39,22 @@ class FoodItem {
      * @ORM\Column(name="description", type="string")
      */
     private $description;
-    /**
-     * 
-     *
-     * @ORM\ManyToMany(targetEntity="AnimalBreed", mappedBy="foodItems")
-     *
-     */
-    private $animalBreeds;
+    
+    
      /**
-     * 
+     * @var integer
      *
-     * @ORM\ManyToMany(targetEntity="Animal", mappedBy="foodItems")
-     *
-     */
-    private $animals;
-    /**
+     * @ORM\ManyToOne(targetEntity="AnimalBreed")
+     * @ORM\JoinColumn(name="animal_breed_id", referencedColumnName="id", onDelete="SET NULL")
      * 
-     * @ORM\OneToMany(targetEntity="FoodCategory", mappedBy="foodItem")
-     * 
-     * 
-     */
-    private $foodCategories;      
+     */ 
+    private $animalBreed;   
+
     /**
      * @var \DateTime
      *
      * @ORM\Column(name="dat_cre", type="datetime")
      */
-    
     private $datCre;
 
     /**
