@@ -1,0 +1,123 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+
+/**
+ * AnimalBreed
+ *
+ * @ORM\Table(name="animal_breed")
+ * @ORM\Entity
+ * @UniqueEntity("animal_breeds")
+ * @ORM\HasLifecycleCallbacks()
+ */
+class AnimalBreed {
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     * 
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string")
+     */
+    private $name;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="description", type="string")
+     */
+    private $description;
+
+    /**
+     * 
+     * @ORM\OneToMany(targetEntity="AnimalHabitat", mappedBy="animalBreed")
+     * 
+     *  
+     */
+    private $AnimalHabitats;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="daily_requirements", type="string")
+     */
+    private $dailyRequirements;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="details", type="string")
+     */
+    private $details;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_of_birth", type="datetime")
+     */
+    private $dateOfBirth;
+
+    /**
+     * @var integer
+     *
+     * @ORM\ManyToOne(targetEntity="UnitMeasure")
+     * 
+     */
+    private $unitMeasure;
+
+    /**
+     * 
+     * @ORM\ManyToMany(targetEntity="Animal", inversedBy="breedCodes", cascade={"persist"})
+     * 
+     */
+    private $animal;
+
+    /**
+     * 
+     * @ORM\ManyToMany(targetEntity="FoodItem", inversedBy="animalBreeds", cascade={"persist"})
+     * 
+     */
+    private $foodItems;
+
+    /**
+     * 
+     * @ORM\OneToMany(targetEntity="AnimalCategory", mappedBy="animalBreed")
+     * 
+     * 
+     */
+    private $AnimalCategories;
+
+    /**
+     * 
+     * @ORM\OneToMany(targetEntity="AnimalPhoto", mappedBy="animalBreed", cascade={"persist"}))
+     * 
+     * 
+     */
+    private $photoss;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="dat_cre", type="datetime")
+     */
+    private $datCre;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="dat_upd", type="datetime")
+     */
+    private $datUpd;
+
+}
