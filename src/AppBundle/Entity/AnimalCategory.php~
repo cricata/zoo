@@ -64,4 +64,134 @@ class AnimalCategory {
      */
     private $datUpd;
 
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     *
+     * @return AnimalCategory
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     *
+     * @return AnimalCategory
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * Set datCre
+     *
+     * @param \DateTime $datCre
+     *
+     * @return AnimalCategory
+     */
+    public function setDatCre()
+    {
+        $this->datCre = new \DateTime();
+
+        return $this;
+    }
+
+    /**
+     * Get datCre
+     *
+     * @return \DateTime
+     */
+    public function getDatCre()
+    {
+        return $this->datCre;
+    }
+
+    /**
+     * Set datUpd
+     *
+     * @param \DateTime $datUpd
+     *
+     * @return AnimalCategory
+     */
+    public function setDatUpd()
+    {
+        $this->datUpd = new \DateTime();
+
+        return $this;
+    }
+
+    /**
+     * Get datUpd
+     *
+     * @return \DateTime
+     */
+    public function getDatUpd()
+    {
+        return $this->datUpd;
+    }
+
+    /**
+     * Set animalBreed
+     *
+     * @param \AppBundle\Entity\AnimalBreed $animalBreed
+     *
+     * @return AnimalCategory
+     */
+    public function setAnimalBreed(\AppBundle\Entity\AnimalBreed $animalBreed = null)
+    {
+        $this->animalBreed = $animalBreed;
+
+        return $this;
+    }
+
+    /**
+     * Get animalBreed
+     *
+     * @return \AppBundle\Entity\AnimalBreed
+     */
+    public function getAnimalBreed()
+    {
+        return $this->animalBreed;
+    }
 }
