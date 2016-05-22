@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+{% trans_default_domain 'AppBundle' %}
+
+{# setam linkurile #}
+{% set animal_links = {
+        'Animal Breed':'animalbreed',
+        'Animal Category':'animalcategory',
+        'Animal Habitat':'animalhabitat',
+        'Cage Type':'cage',
+    }
+%}
+{# afisam linkurile #}
+{% block submenu %}
+    <ul class="nav" id="side-menu">
+        {% for key,link in animal_links %}
+
+                <li><a href="{{ path(link~'_index') }}">{{ key|trans }}</a></li>
+
+        {% endfor %}                       
+    </ul>
+{% endblock %}
+{# blocul body urmeaza a fi rescris in subpagini(de exmeplu in app\Resources\views\product\edit.html.twig) #}
+{% block body %}{% endblock %}
+

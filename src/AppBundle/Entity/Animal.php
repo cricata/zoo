@@ -7,7 +7,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * Cage
+ * Animal
  *
  * @ORM\Table(name="animal")
  * @ORM\Entity
