@@ -14,7 +14,6 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  * @ORM\HasLifecycleCallbacks()
  */
 class AnimalBreed {
-
     /**
      * @var integer
      *
@@ -24,21 +23,18 @@ class AnimalBreed {
      * 
      */
     private $id;
-
     /**
      * @var string
      *
      * @ORM\Column(name="name", type="string")
      */
     private $name;
-
     /**
      * @var string
      *
      * @ORM\Column(name="description", type="string")
      */
     private $description;
-
     /**
      * 
      * @ORM\OneToMany(targetEntity="AnimalHabitat", mappedBy="animalBreed")
@@ -96,7 +92,7 @@ class AnimalBreed {
      * 
      * 
      */
-    private $AnimalCategories;
+    private $animalCategories;
 
     /**
      * 
@@ -104,7 +100,7 @@ class AnimalBreed {
      * 
      * 
      */
-    private $photoss;
+    private $photos;
 
     /**
      * @var \DateTime
@@ -129,7 +125,7 @@ class AnimalBreed {
         $this->animal = new \Doctrine\Common\Collections\ArrayCollection();
         $this->foodItems = new \Doctrine\Common\Collections\ArrayCollection();
         $this->AnimalCategories = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->photoss = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->photos = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -445,7 +441,7 @@ class AnimalBreed {
      */
     public function addAnimalCategory(\AppBundle\Entity\AnimalCategory $animalCategory)
     {
-        $this->AnimalCategories[] = $animalCategory;
+        $this->animalCategories[] = $animalCategory;
 
         return $this;
     }
@@ -457,7 +453,7 @@ class AnimalBreed {
      */
     public function removeAnimalCategory(\AppBundle\Entity\AnimalCategory $animalCategory)
     {
-        $this->AnimalCategories->removeElement($animalCategory);
+        $this->animalCategories->removeElement($animalCategory);
     }
 
     /**
@@ -467,40 +463,39 @@ class AnimalBreed {
      */
     public function getAnimalCategories()
     {
-        return $this->AnimalCategories;
+        return $this->animalCategories;
     }
 
     /**
-     * Add photoss
+     * Add photos
      *
-     * @param \AppBundle\Entity\AnimalPhoto $photoss
+     * @param \AppBundle\Entity\AnimalPhoto $photos
      *
      * @return AnimalBreed
      */
-    public function addPhotoss(\AppBundle\Entity\AnimalPhoto $photoss)
+    public function addPhotos(\AppBundle\Entity\AnimalPhoto $photos)
     {
-        $this->photoss[] = $photoss;
+        $this->photos[] = $photos;
 
         return $this;
     }
 
     /**
-     * Remove photoss
+     * Remove photos
      *
-     * @param \AppBundle\Entity\AnimalPhoto $photoss
+     * @param \AppBundle\Entity\AnimalPhoto $photos
      */
-    public function removePhotoss(\AppBundle\Entity\AnimalPhoto $photoss)
+    public function removePhotos(\AppBundle\Entity\AnimalPhoto $photos)
     {
-        $this->photoss->removeElement($photoss);
+        $this->photos->removeElement($photos);
     }
-
     /**
-     * Get photoss
+     * Get photos
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getPhotoss()
+    public function getPhotos()
     {
-        return $this->photoss;
+        return $this->photos;
     }
 }

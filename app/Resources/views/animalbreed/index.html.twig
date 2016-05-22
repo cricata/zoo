@@ -1,0 +1,81 @@
+{% extends 'animal/animal_layout.html.twig' %}
+{% trans_default_domain 'AppBundle' %}
+
+{% block submenu %}
+   {{ parent() }}
+    <hr />
+    <ul class="nav nav-sidebar">
+        <li><a href="{{ path('animalbreed_new') }}">{% trans %}Add new{% endtrans %}</a></li>
+        <li><a href="{{ path('animalbreed_index') }}">{% trans %}List{% endtrans %}</a></li>
+    </ul>
+{% endblock %}
+{% block body %}
+    <h1>Animals Breed list</h1>
+
+<div class="table-responsive">
+    <table class="table table-hover records_list">
+        <thead>
+            <tr>
+                <th>{% trans %}Id{% endtrans %}</th>
+                <th>{% trans %}Name{% endtrans %}</th>
+                <th>{% trans %}Description{% endtrans %}</th>
+                <th>{% trans %}Details{% endtrans %}</th>
+                <th>{% trans %}Date Of Birth{% endtrans %}</th>
+                <th>{% trans %}Daily Requirements{% endtrans %}</th>
+                <th>{% trans %}Unit Measure{% endtrans %}</th>
+                <th>{% trans %}Animal{% endtrans %}</th>
+                <th>{% trans %}Food Items{% endtrans %}</th>
+                <th>{% trans %}Animal Categories{% endtrans %}</th>
+                <th>{% trans %}Photos{% endtrans %}</th>
+                <th>{% trans %}Animal Habitats{% endtrans %}</th>
+                <th>{% trans %}Datcre{% endtrans %}</th>
+                <th>{% trans %}Datupd{% endtrans %}</th>
+                <th>{% trans %}Actions{% endtrans %}</th>
+
+            </tr>
+        </thead>
+        <tbody>
+        {% for animalBreed in animalBreeds %}
+            <tr>
+                <td><a href="{{ path('animalbreed_show', { 'id': animalBreed.id }) }}">{{ animalBreed.id }}</a></td>
+                <td>{{ animalBreed.name }}</td>
+                <td>{{ animalBreed.description }}</td>
+                <td>{{ animalBreed.details }}</td>
+                <td>{{ animalBreed.dateOfBirth }}</td>
+                <td>{{ animalBreed.dailyRequirements }}</td>
+                <td>
+                    <a href="{% if animalBreed.unitMeasure.id is defined %} {{ path('unitmeasure_show', { 'id': unitMeasure.id }) }} {% endif %}">{{ animalBreed.unitMeasure }}</a>                          
+                </td>
+                <td>
+                    <a href="{% if animalBreed.animal.id is defined %} {{ path('animal_show', { 'id': animal.id }) }} {% endif %}">{{ animalBreed.animal }}</a>                          
+                </td>
+                <td>
+                    <a href="{% if animalBreed.foodItems.id is defined %} {{ path('fooditem_show', { 'id': foodItems.id }) }} {% endif %}">{{ foodItems.animal }}</a>                          
+                </td>
+                 <td>
+                    <a href="{% if animalBreed.animalCategories.id is defined %} {{ path('animalcategory_show', { 'id': animalCategories.id }) }} {% endif %}">{{ animalBreed.animalCategories }}</a>                          
+                </td>
+                 <td>
+                    <a href="{% if animalBreed.Photos.id is defined %} {{ path('photos_show', { 'id': photos.id }) }} {% endif %}">{{ animalBreed.photos }}</a>                          
+                </td>
+                 <td>
+                    <a href="{% if animalBreed.animalHabitat.id is defined %} {{ path('animalhabitat_show', { 'id': animalHabitat.id }) }} {% endif %}">{{ animalBreed.animalHabitat}}</a>                          
+                </td>
+                <td>{% if animal.datCre %}{{ animal.datCre|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if animal.datUpd %}{{ animal.datUpd|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>
+                    <a class="btn btn-sm btn-info" href="{{ path('animalbreed_show', { 'id': animalBreed.id }) }}">
+                        <span class="glyphicon glyphicon-share"></span> Show
+                    </a>
+
+                    <a class="btn btn-sm btn-default" href="{{ path('animalbreed_edit', { 'id': animal.id }) }}">
+                        <span class="glyphicon glyphicon-edit"></span>Edit
+                    </a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

@@ -64,4 +64,134 @@ class FoodCategory {
      */
     private $datUpd;
 
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     *
+     * @return FoodCategory
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     *
+     * @return FoodCategory
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * Set datCre
+     *
+     * @param \DateTime $datCre
+     *
+     * @return FoodCategory
+     */
+    public function setDatCre()
+    {
+        $this->datCre = new \DateTime();
+
+        return $this;
+    }
+
+    /**
+     * Get datCre
+     *
+     * @return \DateTime
+     */
+    public function getDatCre()
+    {
+        return $this->datCre;
+    }
+
+    /**
+     * Set datUpd
+     *
+     * @param \DateTime $datUpd
+     *
+     * @return FoodCategory
+     */
+    public function setDatUpd()
+    {
+        $this->datUpd = new \DateTime();
+
+        return $this;
+    }
+
+    /**
+     * Get datUpd
+     *
+     * @return \DateTime
+     */
+    public function getDatUpd()
+    {
+        return $this->datUpd;
+    }
+
+    /**
+     * Set foodItem
+     *
+     * @param \AppBundle\Entity\FoodCategory $foodItem
+     *
+     * @return FoodCategory
+     */
+    public function setFoodItem(\AppBundle\Entity\FoodCategory $foodItem = null)
+    {
+        $this->foodItem = $foodItem;
+
+        return $this;
+    }
+
+    /**
+     * Get foodItem
+     *
+     * @return \AppBundle\Entity\FoodCategory
+     */
+    public function getFoodItem()
+    {
+        return $this->foodItem;
+    }
 }
