@@ -1,0 +1,15 @@
+app_animal:
+    resource: "@AppBundle/Resources/config/routing/animal.yml"
+    prefix:   /animal
+app_animalbreed:
+    resource: "@AppBundle/Resources/config/routing/animalbreed.yml"
+    prefix:   /animalbreed
+app_animalcategory:
+    resource: "@AppBundle/Resources/config/routing/animalcategory.yml"
+    prefix:   /animalcategory
+app_animalhabitat:
+    resource: "@AppBundle/Resources/config/routing/animalhabitat.yml"
+    prefix:   /animalhabitat
+app_cage:
+    resource: "@AppBundle/Resources/config/routing/cage.yml"
+    prefix:   /cage

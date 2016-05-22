@@ -1,0 +1,58 @@
+{% extends 'animal/animal_layout.html.twig' %}
+{% trans_default_domain 'AppBundle' %}
+
+{% block submenu %}
+   {{ parent() }}
+    <hr />
+    <ul class="nav nav-sidebar">
+        <li><a href="{{ path('cage_new') }}">{% trans %}Add new{% endtrans %}</a></li>
+        <li><a href="{{ path('cage_index') }}">{% trans %}List{% endtrans %}</a></li>
+    </ul>
+{% endblock %}
+{% block body %}
+    <h1>Cages list</h1>
+
+<div class="table-responsive">
+    <table class="table table-hover records_list">
+        <thead>
+            <tr>
+                <th>{% trans %}Id{% endtrans %}</th>
+                <th>{% trans %}Material{% endtrans %}</th>
+                <th>{% trans %}Location{% endtrans %}</th>
+                <th>{% trans %}Number{% endtrans %}</th>
+                <th>{% trans %}Animal{% endtrans %}</th>
+                <th>{% trans %}Datcre{% endtrans %}</th>
+                <th>{% trans %}Datupd{% endtrans %}</th>
+                <th>{% trans %}Actions{% endtrans %}</th>
+
+            </tr>
+        </thead>
+        <tbody>
+        {% for cage in cages %}
+            <tr>
+                <td><a href="{{ path('cage_show', { 'id': cage.id }) }}">{{ cage.id }}</a></td>
+                <td>{{ cage.material }}</td>
+                <td>{{ cage.location }}</td>
+                <td>{{ cage.number }}</td>
+                
+                <td>
+                    <a href="{% if cage.animal.id is defined %} {{ path('animal_show', { 'id': cage.animal.id }) }} {% endif %}">{{ cage.animal }}</a>                          
+                </td>
+                <td>{% if cage.datCre %}{{ cage.datCre|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if cage.datUpd %}{{ cage.datUpd|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>
+                    <a class="btn btn-sm btn-info" href="{{ path('cage_show', { 'id': cage.id }) }}">
+                        <span class="glyphicon glyphicon-share"></span> Show
+                    </a>
+
+                    <a class="btn btn-sm btn-default" href="{{ path('cage_edit', { 'id': cage.id }) }}">
+                        <span class="glyphicon glyphicon-edit"></span>Edit
+                    </a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

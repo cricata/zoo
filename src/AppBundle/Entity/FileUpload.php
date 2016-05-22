@@ -72,4 +72,134 @@ class FileUpload
    
 
 
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set tip
+     *
+     * @param string $tip
+     *
+     * @return FileUpload
+     */
+    public function setTip($tip)
+    {
+        $this->tip = $tip;
+
+        return $this;
+    }
+
+    /**
+     * Get tip
+     *
+     * @return string
+     */
+    public function getTip()
+    {
+        return $this->tip;
+    }
+
+    /**
+     * Set isUsed
+     *
+     * @param boolean $isUsed
+     *
+     * @return FileUpload
+     */
+    public function setIsUsed($isUsed)
+    {
+        $this->isUsed = $isUsed;
+
+        return $this;
+    }
+
+    /**
+     * Get isUsed
+     *
+     * @return boolean
+     */
+    public function getIsUsed()
+    {
+        return $this->isUsed;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     *
+     * @return FileUpload
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Set path
+     *
+     * @param string $path
+     *
+     * @return FileUpload
+     */
+    public function setPath($path)
+    {
+        $this->path = $path;
+
+        return $this;
+    }
+
+    /**
+     * Get path
+     *
+     * @return string
+     */
+    public function getPath()
+    {
+        return $this->path;
+    }
+
+    /**
+     * Set datCre
+     *
+     * @param \DateTime $datCre
+     *
+     * @return FileUpload
+     */
+    public function setDatCre()
+    {
+        $this->datCre = new \DateTime();
+
+        return $this;
+    }
+
+    /**
+     * Get datCre
+     *
+     * @return \DateTime
+     */
+    public function getDatCre()
+    {
+        return $this->datCre;
+    }
 }
