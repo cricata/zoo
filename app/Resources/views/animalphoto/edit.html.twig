@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block submenu %}
+    {{ parent() }}
+    <hr />
+    <ul class="nav nav-sidebar">
+        <li><a href="{{ path('animalphoto_new') }}">{% trans %}Add new{% endtrans %}</a></li>
+        <li><a href="{{ path('animalphoto_index') }}">{% trans %}List{% endtrans %}</a></li>
+    </ul>
+{% endblock %}
+{% block body %}
+    <h1>AnimalPhoto edit</h1>
+
+    {{ form_start(edit_form) }}
+        {{ form_widget(edit_form) }}
+        <input type="submit" value="Edit" />
+    {{ form_end(edit_form) }}
+
+{% endblock %}

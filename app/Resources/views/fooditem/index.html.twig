@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>FoodItem list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Code</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Datcre</th>
+                <th>Datupd</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for foodItem in foodItems %}
+            <tr>
+                <td><a href="{{ path('fooditem_show', { 'id': foodItem.id }) }}">{{ foodItem.id }}</a></td>
+                <td>{{ foodItem.code }}</td>
+                <td>{{ foodItem.name }}</td>
+                <td>{{ foodItem.description }}</td>
+                <td>{% if foodItem.datCre %}{{ foodItem.datCre|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if foodItem.datUpd %}{{ foodItem.datUpd|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('fooditem_show', { 'id': foodItem.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('fooditem_edit', { 'id': foodItem.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('fooditem_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

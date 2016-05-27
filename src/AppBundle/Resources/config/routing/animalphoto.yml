@@ -1,0 +1,24 @@
+animalphoto_index:
+    path:     /
+    defaults: { _controller: "AppBundle:AnimalPhoto:index" }
+    methods:  GET
+
+animalphoto_show:
+    path:     /{id}/show
+    defaults: { _controller: "AppBundle:AnimalPhoto:show" }
+    methods:  GET
+
+animalphoto_new:
+    path:     /new
+    defaults: { _controller: "AppBundle:AnimalPhoto:new" }
+    methods:  [GET, POST]
+
+animalphoto_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "AppBundle:AnimalPhoto:edit" }
+    methods:  [GET, POST]
+
+animalphoto_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "AppBundle:AnimalPhoto:delete" }
+    methods:  DELETE

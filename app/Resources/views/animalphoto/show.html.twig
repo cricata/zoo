@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>AnimalPhoto</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ animalPhoto.id }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ animalPhoto.name }}</td>
+            </tr>
+            <tr>
+                <th>Path</th>
+                <td>{{ animalPhoto.path }}</td>
+            </tr>
+            <tr>
+                <th>Datcre</th>
+                <td>{% if animalPhoto.datCre %}{{ animalPhoto.datCre|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Datupd</th>
+                <td>{% if animalPhoto.datUpd %}{{ animalPhoto.datUpd|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('animalphoto_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('animalphoto_edit', { 'id': animalPhoto.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

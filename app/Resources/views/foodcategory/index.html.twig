@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>FoodCategory list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Datcre</th>
+                <th>Datupd</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for foodCategory in foodCategories %}
+            <tr>
+                <td><a href="{{ path('foodcategory_show', { 'id': foodCategory.id }) }}">{{ foodCategory.id }}</a></td>
+                <td>{{ foodCategory.name }}</td>
+                <td>{{ foodCategory.description }}</td>
+                <td>{% if foodCategory.datCre %}{{ foodCategory.datCre|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if foodCategory.datUpd %}{{ foodCategory.datUpd|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('foodcategory_show', { 'id': foodCategory.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('foodcategory_edit', { 'id': foodCategory.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('foodcategory_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

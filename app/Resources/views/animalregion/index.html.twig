@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>AnimalRegion list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Datcre</th>
+                <th>Datupd</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for animalRegion in animalRegions %}
+            <tr>
+                <td><a href="{{ path('animalregion_show', { 'id': animalRegion.id }) }}">{{ animalRegion.id }}</a></td>
+                <td>{{ animalRegion.name }}</td>
+                <td>{{ animalRegion.description }}</td>
+                <td>{% if animalRegion.datCre %}{{ animalRegion.datCre|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if animalRegion.datUpd %}{{ animalRegion.datUpd|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('animalregion_show', { 'id': animalRegion.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('animalregion_edit', { 'id': animalRegion.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('animalregion_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

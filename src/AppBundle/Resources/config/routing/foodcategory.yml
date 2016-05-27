@@ -1,0 +1,24 @@
+foodcategory_index:
+    path:     /
+    defaults: { _controller: "AppBundle:FoodCategory:index" }
+    methods:  GET
+
+foodcategory_show:
+    path:     /{id}/show
+    defaults: { _controller: "AppBundle:FoodCategory:show" }
+    methods:  GET
+
+foodcategory_new:
+    path:     /new
+    defaults: { _controller: "AppBundle:FoodCategory:new" }
+    methods:  [GET, POST]
+
+foodcategory_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "AppBundle:FoodCategory:edit" }
+    methods:  [GET, POST]
+
+foodcategory_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "AppBundle:FoodCategory:delete" }
+    methods:  DELETE

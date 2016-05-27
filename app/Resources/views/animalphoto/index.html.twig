@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>AnimalPhoto list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Path</th>
+                <th>Datcre</th>
+                <th>Datupd</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for animalPhoto in animalPhotos %}
+            <tr>
+                <td><a href="{{ path('animalphoto_show', { 'id': animalPhoto.id }) }}">{{ animalPhoto.id }}</a></td>
+                <td>{{ animalPhoto.name }}</td>
+                <td>{{ animalPhoto.path }}</td>
+                <td>{% if animalPhoto.datCre %}{{ animalPhoto.datCre|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if animalPhoto.datUpd %}{{ animalPhoto.datUpd|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('animalphoto_show', { 'id': animalPhoto.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('animalphoto_edit', { 'id': animalPhoto.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('animalphoto_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}
