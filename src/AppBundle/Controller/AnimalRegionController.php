@@ -8,6 +8,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use AppBundle\Entity\AnimalRegion;
 use AppBundle\Form\AnimalRegionType;
 
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+
 /**
  * AnimalRegion controller.
  *
@@ -21,11 +23,14 @@ class AnimalRegionController extends Controller
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
+        $mapping = $this->getDoctrine()->getManager()->getClassMetadata('AppBundle:AnimalRegion');
+        $columns = $mapping->getFieldNames();
 
         $animalRegions = $em->getRepository('AppBundle:AnimalRegion')->findAll();
 
         return $this->render('animalregion/index.html.twig', array(
             'animalRegions' => $animalRegions,
+            'columns'    => $columns,
         ));
     }
 
@@ -37,6 +42,13 @@ class AnimalRegionController extends Controller
     {
         $animalRegion = new AnimalRegion();
         $form = $this->createForm('AppBundle\Form\AnimalRegionType', $animalRegion);
+        $form->add('submit', SubmitType::class, array(
+            'label'=>'Create',
+            'attr'=> array(
+                'class'=>'btn btn-primary',
+            ),
+            'translation_domain'=>'AppBundle'
+        ));
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -75,6 +87,13 @@ class AnimalRegionController extends Controller
     {
         $deleteForm = $this->createDeleteForm($animalRegion);
         $editForm = $this->createForm('AppBundle\Form\AnimalRegionType', $animalRegion);
+        $editForm->add('submit', SubmitType::class, array(
+            'label'=>'Save',
+            'attr'=>[
+                'class'=>'btn btn-success'
+            ],
+            'translation_domain'=>'AppBundle'
+        ));
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
@@ -122,6 +141,13 @@ class AnimalRegionController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('animalregion_delete', array('id' => $animalRegion->getId())))
             ->setMethod('DELETE')
+            ->add('submit', SubmitType::class, array(
+                'label'=>'Delete',
+                'attr'=>array(
+                    'class'=>'btn btn-danger'
+                ),
+                'translation_domain'=>'AppBundle'
+            ))
             ->getForm()
         ;
     }

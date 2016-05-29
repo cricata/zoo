@@ -1,9 +1,23 @@
-{% extends 'base.html.twig' %}
+{% extends 'animal/animal_layout.html.twig' %}
+{% trans_default_domain 'AppBundle' %}
 
+{% block submenu %}
+    {{ parent() }}
+    <hr />
+    <ul class="nav nav-sidebar">
+        <li><a href="{{ path('fooditem_new') }}">{% trans %}Add new{% endtrans %}</a></li>
+        <li><a href="{{ path('fooditem_index') }}">{% trans %}List{% endtrans %}</a></li>
+        <li><a href="{{ path('fooditem_edit', { 'id':foodItem.id }) }}">{% trans %}Edit{% endtrans %}</a></li>
+    </ul>
+{% endblock %}
 {% block body %}
     <h1>FoodItem</h1>
 
-    <table>
+     <div class="col-lg-4">
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover record_properties">
+                <tbody>
+                    <tr>
         <tbody>
             <tr>
                 <th>Id</th>
@@ -21,6 +35,10 @@
                 <th>Description</th>
                 <td>{{ foodItem.description }}</td>
             </tr>
+             <tr>
+                <th>Category</th>
+                <td>{{ foodItem.foodCategories }}</td>
+            </tr>
             <tr>
                 <th>Datcre</th>
                 <td>{% if foodItem.datCre %}{{ foodItem.datCre|date('Y-m-d H:i:s') }}{% endif %}</td>
@@ -28,21 +46,14 @@
             <tr>
                 <th>Datupd</th>
                 <td>{% if foodItem.datUpd %}{{ foodItem.datUpd|date('Y-m-d H:i:s') }}{% endif %}</td>
-            </tr>
-        </tbody>
-    </table>
+             </tr>
+                </tbody>
+            </table>
+        </div>
 
-    <ul>
-        <li>
-            <a href="{{ path('fooditem_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('fooditem_edit', { 'id': foodItem.id }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+        {{ form_start(delete_form, {'attr': {'role':'form', 'class':'form-horizontal'}}) }}
+        {{ form_start(delete_form) }}
+        {{ form_end(delete_form) }}
+    </div>
+
 {% endblock %}

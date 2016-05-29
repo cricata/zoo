@@ -60,12 +60,14 @@ class FoodItem {
      *
      */
     private $animals;
-    /**
+   
+     /**
+     * @var integer
+     *
+     * @ORM\ManyToOne(targetEntity="FoodCategory")
+     * @ORM\JoinColumn(name="food_category_id", referencedColumnName="id", onDelete="SET NULL")
      * 
-     * @ORM\OneToMany(targetEntity="FoodCategory", mappedBy="foodItem")
-     * 
-     * 
-     */
+     */ 
     private $foodCategories;      
     /**
      * @var \DateTime
@@ -91,7 +93,12 @@ class FoodItem {
         $this->animals = new \Doctrine\Common\Collections\ArrayCollection();
         $this->foodCategories = new \Doctrine\Common\Collections\ArrayCollection();
     }
-
+    /**
+     * @inheritDoc
+     */
+    public function __toString() {
+        return $this->name;
+    }
     /**
      * Get id
      *
@@ -174,17 +181,17 @@ class FoodItem {
         return $this->description;
     }
 
-    /**
+     /**
      * Set datCre
-     *
+     * @ORM\PrePersist
      * @param \DateTime $datCre
      *
-     * @return FoodItem
+     * @return Category
      */
+
     public function setDatCre()
     {
         $this->datCre = new \DateTime();
-
         return $this;
     }
 
@@ -200,15 +207,15 @@ class FoodItem {
 
     /**
      * Set datUpd
-     *
+     * @ORM\PrePersist
+     * @ORM\PreUpdate
      * @param \DateTime $datUpd
      *
-     * @return FoodItem
+     * @return Category
      */
     public function setDatUpd()
     {
-       $this->datUpd = new \DateTime();
-
+        $this->datUpd = new \DateTime();
         return $this;
     }
 
@@ -322,5 +329,19 @@ class FoodItem {
     public function getFoodCategories()
     {
         return $this->foodCategories;
+    }
+
+    /**
+     * Set foodCategories
+     *
+     * @param \AppBundle\Entity\FoodCategory $foodCategories
+     *
+     * @return FoodItem
+     */
+    public function setFoodCategories(\AppBundle\Entity\FoodCategory $foodCategories = null)
+    {
+        $this->foodCategories = $foodCategories;
+
+        return $this;
     }
 }

@@ -8,6 +8,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use AppBundle\Entity\UnitMeasure;
 use AppBundle\Form\UnitMeasureType;
 
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 /**
  * UnitMeasure controller.
  *
@@ -21,11 +22,13 @@ class UnitMeasureController extends Controller
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
-
+        $mapping = $this->getDoctrine()->getManager()->getClassMetadata('AppBundle:FoodCategory');
+        $columns = $mapping->getFieldNames();
         $unitMeasures = $em->getRepository('AppBundle:UnitMeasure')->findAll();
 
         return $this->render('unitmeasure/index.html.twig', array(
             'unitMeasures' => $unitMeasures,
+            'columns' => $columns,
         ));
     }
 
@@ -37,6 +40,13 @@ class UnitMeasureController extends Controller
     {
         $unitMeasure = new UnitMeasure();
         $form = $this->createForm('AppBundle\Form\UnitMeasureType', $unitMeasure);
+        $form->add('submit', SubmitType::class, array(
+            'label' => 'Create',
+            'attr' => array(
+                'class' => 'btn btn-primary',
+            ),
+            'translation_domain' => 'AppBundle'
+        ));
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -75,6 +85,13 @@ class UnitMeasureController extends Controller
     {
         $deleteForm = $this->createDeleteForm($unitMeasure);
         $editForm = $this->createForm('AppBundle\Form\UnitMeasureType', $unitMeasure);
+        $editForm->add('submit', SubmitType::class, array(
+            'label'=>'Save',
+            'attr'=>[
+                'class'=>'btn btn-success'
+            ],
+            'translation_domain'=>'AppBundle'
+        ));
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
@@ -122,6 +139,13 @@ class UnitMeasureController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('unitmeasure_delete', array('id' => $unitMeasure->getId())))
             ->setMethod('DELETE')
+            ->add('submit', SubmitType::class, array(
+                        'label'=>'Delete',
+                        'attr'=>array(
+                            'class'=>'btn btn-danger'
+                        ),
+                        'translation_domain'=>'AppBundle'
+                        ))
             ->getForm()
         ;
     }

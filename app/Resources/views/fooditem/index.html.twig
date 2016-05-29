@@ -1,20 +1,28 @@
-{% extends 'base.html.twig' %}
+{% extends 'animal/animal_layout.html.twig' %}
+{% trans_default_domain 'AppBundle' %}
 
+{% block submenu %}
+    {{ parent() }}
+    <hr />
+    <ul class="nav nav-sidebar">
+        <li><a href="{{ path('fooditem_new') }}">{% trans %}Add new{% endtrans %}</a></li>
+        <li><a href="{{ path('fooditem_index') }}">{% trans %}List{% endtrans %}</a></li>
+    </ul>
+{% endblock %}
 {% block body %}
     <h1>FoodItem list</h1>
 
-    <table>
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Code</th>
-                <th>Name</th>
-                <th>Description</th>
-                <th>Datcre</th>
-                <th>Datupd</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
+     <div class="table-responsive">
+            <table class="table table-hover records_list">
+                <thead>
+                 <th>{% trans %}Id{% endtrans %}</th>
+                <th>{% trans %}Code{% endtrans %}</th>
+                <th>{% trans %}Name{% endtrans %}</th>
+                <th>{% trans %}Description{% endtrans %}</th>
+                <th>{% trans %}Datcre{% endtrans %}</th>
+                <th>{% trans %}Datupd{% endtrans %}</th>
+                <th>{% trans %}Actions{% endtrans %}</th>
+                </thead>
         <tbody>
         {% for foodItem in foodItems %}
             <tr>
@@ -25,23 +33,21 @@
                 <td>{% if foodItem.datCre %}{{ foodItem.datCre|date('Y-m-d H:i:s') }}{% endif %}</td>
                 <td>{% if foodItem.datUpd %}{{ foodItem.datUpd|date('Y-m-d H:i:s') }}{% endif %}</td>
                 <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('fooditem_show', { 'id': foodItem.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('fooditem_edit', { 'id': foodItem.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+                            <a class="btn btn-sm btn-info" href="{{ path('fooditem_show', { 'id': foodItem.id }) }}">
+                            <span class="glyphicon glyphicon-share"></span> Show</a>
 
-    <ul>
-        <li>
-            <a href="{{ path('fooditem_new') }}">Create a new entry</a>
-        </li>
-    </ul>
+                            <a class="btn btn-sm btn-default" href="{{ path('fooditem_edit', { 'id': foodItem.id }) }}">
+                                <span class="glyphicon glyphicon-edit"></span> Edit</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+
+        </div>
+
+
+
+
+
 {% endblock %}

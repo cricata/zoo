@@ -7,6 +7,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use AppBundle\Entity\FoodItem;
 use AppBundle\Form\FoodItemType;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 /**
  * FoodItem controller.
@@ -20,13 +22,18 @@ class FoodItemController extends Controller
      */
     public function indexAction()
     {
-        $em = $this->getDoctrine()->getManager();
+       $em = $this->getDoctrine()->getManager();
+        $mapping = $this->getDoctrine()->getManager()->getClassMetadata('AppBundle:FoodItem');
+        $columns = $mapping->getFieldNames();
 
-        $foodItems = $em->getRepository('AppBundle:FoodItem')->findAll();
+        $foodItems = $em->getRepository('AppBundle:foodItem')->findAll();
 
         return $this->render('fooditem/index.html.twig', array(
             'foodItems' => $foodItems,
+            'columns'   => $columns,
         ));
+
+     
     }
 
     /**
@@ -37,6 +44,13 @@ class FoodItemController extends Controller
     {
         $foodItem = new FoodItem();
         $form = $this->createForm('AppBundle\Form\FoodItemType', $foodItem);
+        $form->add('submit', SubmitType::class, array(
+            'label' => 'Create',
+            'attr' => array(
+                'class' => 'btn btn-primary',
+            ),
+            'translation_domain' => 'AppBundle',
+        ));
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -75,6 +89,13 @@ class FoodItemController extends Controller
     {
         $deleteForm = $this->createDeleteForm($foodItem);
         $editForm = $this->createForm('AppBundle\Form\FoodItemType', $foodItem);
+        $editForm->add('submit', SubmitType::class, array(
+            'label'=>'Edit',
+            'attr'=>array(
+                'class'=>'btn btn-success',
+            ),
+            'translation_domain'=>'AppBundle',
+        ));
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
@@ -122,6 +143,13 @@ class FoodItemController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('fooditem_delete', array('id' => $foodItem->getId())))
             ->setMethod('DELETE')
+            ->add('submit', SubmitType::class, array(
+                            'label' => 'Delete',
+                            'attr' => array(
+                                'class' => 'btn btn-danger'
+                            ),
+                            'translation_domain' => 'AppBundle',
+                        ))
             ->getForm()
         ;
     }
