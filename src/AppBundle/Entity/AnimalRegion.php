@@ -123,17 +123,17 @@ class AnimalRegion {
         return $this->description;
     }
 
-    /**
+     /**
      * Set datCre
-     *
+     * @ORM\PrePersist
      * @param \DateTime $datCre
      *
-     * @return AnimalRegion
+     * @return Category
      */
+
     public function setDatCre()
     {
         $this->datCre = new \DateTime();
-
         return $this;
     }
 
@@ -149,15 +149,15 @@ class AnimalRegion {
 
     /**
      * Set datUpd
-     *
+     * @ORM\PrePersist
+     * @ORM\PreUpdate
      * @param \DateTime $datUpd
      *
-     * @return AnimalRegion
+     * @return Category
      */
     public function setDatUpd()
     {
         $this->datUpd = new \DateTime();
-
         return $this;
     }
 
@@ -170,7 +170,6 @@ class AnimalRegion {
     {
         return $this->datUpd;
     }
-
     /**
      * Set animalBreed
      *

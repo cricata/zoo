@@ -1,0 +1,24 @@
+animalregion_index:
+    path:     /
+    defaults: { _controller: "AppBundle:AnimalRegion:index" }
+    methods:  GET
+
+animalregion_show:
+    path:     /{id}/show
+    defaults: { _controller: "AppBundle:AnimalRegion:show" }
+    methods:  GET
+
+animalregion_new:
+    path:     /new
+    defaults: { _controller: "AppBundle:AnimalRegion:new" }
+    methods:  [GET, POST]
+
+animalregion_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "AppBundle:AnimalRegion:edit" }
+    methods:  [GET, POST]
+
+animalregion_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "AppBundle:AnimalRegion:delete" }
+    methods:  DELETE

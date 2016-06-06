@@ -42,12 +42,11 @@ class FoodCategory {
     
     
      /**
-     * @var integer
-     *
-     * @ORM\ManyToOne(targetEntity="FoodCategory")
-     * @ORM\JoinColumn(name="food_category_id", referencedColumnName="id", onDelete="SET NULL")
      * 
-     */ 
+     * @ORM\OneToMany(targetEntity="FoodItem", mappedBy="foodCategories")
+     * 
+     * 
+     */
     private $foodItem;   
 
     /**
@@ -63,7 +62,13 @@ class FoodCategory {
      * @ORM\Column(name="dat_upd", type="datetime")
      */
     private $datUpd;
-
+    
+    /**
+     * @inheritDoc
+     */
+    public function __toString() {
+        return $this->name;
+    }
 
     /**
      * Get id
@@ -123,17 +128,17 @@ class FoodCategory {
         return $this->description;
     }
 
-    /**
+     /**
      * Set datCre
-     *
+     * @ORM\PrePersist
      * @param \DateTime $datCre
      *
-     * @return FoodCategory
+     * @return Category
      */
+
     public function setDatCre()
     {
         $this->datCre = new \DateTime();
-
         return $this;
     }
 
@@ -149,15 +154,15 @@ class FoodCategory {
 
     /**
      * Set datUpd
-     *
+     * @ORM\PrePersist
+     * @ORM\PreUpdate
      * @param \DateTime $datUpd
      *
-     * @return FoodCategory
+     * @return Category
      */
     public function setDatUpd()
     {
         $this->datUpd = new \DateTime();
-
         return $this;
     }
 
@@ -193,5 +198,36 @@ class FoodCategory {
     public function getFoodItem()
     {
         return $this->foodItem;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->foodItem = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add foodItem
+     *
+     * @param \AppBundle\Entity\FoodItem $foodItem
+     *
+     * @return FoodCategory
+     */
+    public function addFoodItem(\AppBundle\Entity\FoodItem $foodItem)
+    {
+        $this->foodItem[] = $foodItem;
+
+        return $this;
+    }
+
+    /**
+     * Remove foodItem
+     *
+     * @param \AppBundle\Entity\FoodItem $foodItem
+     */
+    public function removeFoodItem(\AppBundle\Entity\FoodItem $foodItem)
+    {
+        $this->foodItem->removeElement($foodItem);
     }
 }

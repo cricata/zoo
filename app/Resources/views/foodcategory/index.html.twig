@@ -1,0 +1,46 @@
+{% extends 'animal/animal_layout.html.twig' %}
+{% trans_default_domain 'AppBundle' %}
+
+{% block submenu %}
+    {{ parent() }}
+    <hr />
+    <ul class="nav nav-sidebar">
+        <li><a href="{{ path('foodcategory_new') }}">{% trans %}Add new{% endtrans %}</a></li>
+        <li><a href="{{ path('foodcategory_index') }}">{% trans %}List{% endtrans %}</a></li>
+    </ul>
+{% endblock %}
+{% block body %}
+    <h1>FoodCategory list</h1>
+
+    <div class="table-responsive">
+    <table class="table table-hover records_list">
+        <thead>
+            <tr>
+                {% for column in columns %}
+                    <th>{{ column|trans }}</th>
+                    {% endfor %}
+                <th>{% trans %}Actions{% endtrans %}</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for foodCategory in foodCategories %}
+            <tr>
+                <td><a href="{{ path('foodcategory_show', { 'id': foodCategory.id }) }}">{{ foodCategory.id }}</a></td>
+                <td>{{ foodCategory.name }}</td>
+                <td>{{ foodCategory.description }}</td>
+                <td>{% if foodCategory.datCre %}{{ foodCategory.datCre|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if foodCategory.datUpd %}{{ foodCategory.datUpd|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>
+                  <a class="btn btn-sm btn-info" href="{{ path('foodcategory_show', { 'id': foodCategory.id }) }}"> <span class="glyphicon glyphicon-share"></span> Show
+                    </a>
+                     <a class="btn btn-sm btn-default" href="{{ path('foodcategory_edit', { 'id': foodCategory.id }) }}">  <span class="glyphicon glyphicon-edit"></span> Edit
+                    </a>
+                </td>
+            </tr>
+        {% endfor %}
+       </tbody>
+    </table>
+</div>
+
+    
+{% endblock %}

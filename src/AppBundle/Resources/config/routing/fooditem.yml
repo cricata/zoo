@@ -1,0 +1,24 @@
+fooditem_index:
+    path:     /
+    defaults: { _controller: "AppBundle:FoodItem:index" }
+    methods:  GET
+
+fooditem_show:
+    path:     /{id}/show
+    defaults: { _controller: "AppBundle:FoodItem:show" }
+    methods:  GET
+
+fooditem_new:
+    path:     /new
+    defaults: { _controller: "AppBundle:FoodItem:new" }
+    methods:  [GET, POST]
+
+fooditem_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "AppBundle:FoodItem:edit" }
+    methods:  [GET, POST]
+
+fooditem_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "AppBundle:FoodItem:delete" }
+    methods:  DELETE

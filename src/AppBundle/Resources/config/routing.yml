@@ -10,6 +10,21 @@ app_animalcategory:
 app_animalhabitat:
     resource: "@AppBundle/Resources/config/routing/animalhabitat.yml"
     prefix:   /animalhabitat
+app_animalphoto:
+    resource: "@AppBundle/Resources/config/routing/animalphoto.yml"
+    prefix:   /animalphoto
+app_animalregion:
+    resource: "@AppBundle/Resources/config/routing/animalregion.yml"
+    prefix:   /animalregion
 app_cage:
     resource: "@AppBundle/Resources/config/routing/cage.yml"
     prefix:   /cage
+app_foodcategory:
+    resource: "@AppBundle/Resources/config/routing/foodcategory.yml"
+    prefix:   /foodcategory
+app_fooditem:
+    resource: "@AppBundle/Resources/config/routing/fooditem.yml"
+    prefix:   /fooditem
+app_unitmeasure:
+    resource: "@AppBundle/Resources/config/routing/unitmeasure.yml"
+    prefix:   /unitmeasure

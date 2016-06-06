@@ -14,8 +14,8 @@ use Symfony\Component\HttpFoundation\Request;
  * @UniqueEntity("name")
  * @ORM\HasLifecycleCallbacks()
  */
-class UnitMeasure {
-
+class UnitMeasure
+{
     /**
      * @var integer
      *
@@ -23,29 +23,40 @@ class UnitMeasure {
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
-
+    private $id;      
+    
     /**
      * @var string
+     *
+     * @ORM\Column(name="name", type="string", nullable=false)
      */
-    private $name;
+    private $name;        
 
+    
     /**
      * @var \DateTime
+     *
+     * @ORM\Column(name="dat_cre", type="datetime")
      */
     private $datCre;
 
     /**
      * @var \DateTime
+     *
+     * @ORM\Column(name="dat_upd", type="datetime")
      */
     private $datUpd;
+
+
+   
 
     /**
      * Get id
      *
      * @return integer
      */
-    public function getId() {
+    public function getId()
+    {
         return $this->id;
     }
 
@@ -56,7 +67,8 @@ class UnitMeasure {
      *
      * @return UnitMeasure
      */
-    public function setName($name) {
+    public function setName($name)
+    {
         $this->name = $name;
 
         return $this;
@@ -67,20 +79,21 @@ class UnitMeasure {
      *
      * @return string
      */
-    public function getName() {
+    public function getName()
+    {
         return $this->name;
     }
 
     /**
      * Set datCre
-     *
+     * @ORM\PrePersist
      * @param \DateTime $datCre
      *
      * @return UnitMeasure
      */
-    public function setDatCre() {
+    public function setDatCre($datCre)
+    {
         $this->datCre = new \DateTime();
-
         return $this;
     }
 
@@ -89,20 +102,22 @@ class UnitMeasure {
      *
      * @return \DateTime
      */
-    public function getDatCre() {
+    public function getDatCre()
+    {
         return $this->datCre;
     }
 
     /**
      * Set datUpd
-     *
+     * @ORM\PreUpdate
+     * @ORM\PrePersist
      * @param \DateTime $datUpd
      *
      * @return UnitMeasure
      */
-    public function setDatUpd() {
+    public function setDatUpd($datUpd)
+    {
         $this->datUpd = new \DateTime();
-
         return $this;
     }
 
@@ -111,8 +126,8 @@ class UnitMeasure {
      *
      * @return \DateTime
      */
-    public function getDatUpd() {
+    public function getDatUpd()
+    {
         return $this->datUpd;
     }
-
 }
